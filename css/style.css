@@ -1,0 +1,326 @@
+/* Обнуление и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* Header */
+  .header {
+    background-color: #e3f2fd;
+    border-bottom: 1px solid #bbdefb;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .logo {
+    flex-shrink: 0;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .nav-text {
+    flex: 1;
+    min-width: 280px;
+    color: #0d47a1;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
+  .nav-text strong {
+    color: #1565c0;
+  }
+  
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+  }
+  
+  .nav-link {
+    color: #1565c0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    background-color: #1565c0;
+    color: white;
+  }
+  
+  /* Main */
+  .main {
+    flex: 1 0 auto;
+    width: 100%;
+  }
+  
+  /* Секции */
+  .section {
+    padding: 60px 0;
+    display: none;
+  }
+  
+  .section.active {
+    display: block;
+  }
+  
+  .section h2 {
+    color: #0d47a1;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #90caf9;
+    padding-bottom: 10px;
+  }
+  
+  .section p,
+  .section ul {
+    margin-bottom: 15px;
+    color: #444;
+  }
+  
+  .section ul {
+    padding-left: 20px;
+  }
+
+  /* Запрет выделения для логотипа и текста специализации */
+    .logo,
+    .nav-text {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE10+/Edge */
+    user-select: none;         /* Стандарт */
+    -webkit-touch-callout: none; /* Запрет меню на длинном тапе в Safari iOS */
+    -webkit-tap-highlight-color: transparent; /* Убирает подсветку при касании */
+}
+    /* Запрет контекстное меню (ПКМ) */
+    .logo img {
+    pointer-events: none; /* Отключает клики/ПКМ на изображении (опционально) */
+}
+
+/* Стили для таблицы цен */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.95rem;
+}
+
+.price-table th,
+.price-table td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.price-table th {
+  background-color: #bbdefb;
+  color: #0d47a1;
+  font-weight: 600;
+}
+
+.price-table tr:hover {
+  background-color: #f5f9ff;
+}
+
+.price-table td {
+  color: #444;
+}
+  
+  /* Footer */
+  .footer {
+    flex-shrink: 0;
+    background-color: #0d47a1;
+    color: #bbdefb;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+  }
+  
+  .footer p {
+    margin: 0;
+  }
+
+  /* === Стилизованный скроллбар (в стиле сайта) === */
+
+/* Весь скроллбар */
+::-webkit-scrollbar {
+    width: 10px; /* Ширина вертикального скроллбара */
+    height: 10px; /* Высота горизонтального скроллбара (если нужен) */
+  }
+  
+  /* Фон скроллбара */
+  ::-webkit-scrollbar-track {
+    background-color: #f0f4f8;
+    border-radius: 6px;
+    margin-block: 4px; /* Отступы сверху и снизу */
+  }
+  
+  /* Ползунок скроллбара */
+  ::-webkit-scrollbar-thumb {
+    background-color: #79aeeb; /* Голубой цвет — в тон дизайну */
+    border-radius: 6px;
+    border: 2px solid #e3f2fd; /* Лёгкая обводка для объёма */
+    transition: background-color 0.3s ease; /* Плавное изменение при наведении */
+  }
+  
+  /* Ползунок при наведении */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #0d47a1; /* Темнее при наведении */
+  }
+  
+  /* Уголок (если есть) */
+  ::-webkit-scrollbar-corner {
+    background-color: #f0f4f8;
+    border-radius: 6px;
+  }
+
+  /* Buttons */
+  .btn-download,
+  .btn-manual,
+  .btn-certificate {
+    display: inline-block;
+    margin: 10px 10px 10px 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .btn-download {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .btn-download:hover {
+    background-color: #218838;
+  }
+
+  .btn-manual {
+    background-color: #17a2b8;
+    color: white;
+  }
+
+  .btn-manual:hover {
+    background-color: #138496;
+  }
+
+  .btn-certificate {
+    background-color: #ffc107;
+    color: #212529;
+  }
+
+  .btn-certificate:hover {
+    background-color: #e0a800;
+  }
+
+  /* Product blocks */
+  .product-block {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+  .delivery-terms {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+  }
+  
+  /* === Для Firefox (опционально, экспериментально) === */
+  
+  /* Firefox поддерживает ограниченную стилизацию */
+  @supports (-moz-appearance: none) {
+    /* Firefox не позволяет полноценно стилизовать скроллбар,
+       но можно изменить цвет */
+    * {
+      scrollbar-width: thin; /* "auto", "thin", "none" */
+      scrollbar-color: #79aeeb #f0f4f8; /* thumb track */
+    }
+  }
+  
+  /* Адаптив */
+  @media (max-width: 768px) {
+    .header-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+  
+    .logo {
+      order: -1;
+    }
+  
+    .nav-text {
+      font-size: 0.85rem;
+      min-width: auto;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  
+    .nav-list {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+  
+    .nav-link {
+      font-size: 0.9rem;
+      padding: 6px 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer {
+      font-size: 0.85rem;
+      padding: 15px 0;
+    }
+  }
