@@ -2,7 +2,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const sections = document.querySelectorAll(".section");
   const navLinks = document.querySelectorAll(".nav-link");
 
-  // Показываем нужную секцию
+  // === Функция переключения описания продукта ===
+  window.toggleDescription = function (id) {
+    const el = document.getElementById(id);
+    if (el.classList.contains('hidden')) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
+  };
+
+  // === Показываем нужную секцию ===
   function showSection(targetId) {
     sections.forEach(section => section.classList.remove("active"));
     const targetSection = document.querySelector(targetId);
@@ -15,23 +25,20 @@ document.addEventListener("DOMContentLoaded", function () {
     if (activeLink) activeLink.classList.add("active");
   }
 
-  // Определяем активную секцию при прокрутке
+  // === Определяем активную секцию при прокрутке ===
   function activateSectionOnScroll() {
     let currentSection = null;
 
-    // Проходим по всем секциям сверху вниз
     sections.forEach(section => {
       const rect = section.getBoundingClientRect();
       const top = rect.top;
       const bottom = rect.bottom;
 
-      // Считаем, что секция "видна", если её верх в пределах экрана (с поправкой на хедер)
       if (top <= 100 && bottom >= 100) {
         currentSection = section.id;
       }
     });
 
-    // Если нашли активную секцию — обновляем меню
     if (currentSection) {
       navLinks.forEach(link => link.classList.remove("active"));
       const activeLink = document.querySelector(`a[href="#${currentSection}"]`);
@@ -53,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
 
-      // Меняем URL и активную секцию
       history.pushState(null, null, targetId);
       showSection(targetId);
     });
@@ -61,11 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // === Инициализация при загрузке ===
   function onInit() {
-    // Если в URL есть якорь — используем его
     if (window.location.hash && document.querySelector(window.location.hash)) {
       showSection(window.location.hash);
     } else {
-      // Иначе — по умолчанию "О компании"
       showSection("#about");
     }
   }

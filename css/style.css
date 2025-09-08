@@ -272,6 +272,54 @@
     border-left: 4px solid #007bff;
     border-radius: 4px;
   }
+
+  /* Hower */
+
+  .btn-more {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+
+  .btn-more:hover {
+    background-color: #0056b3;
+  }
+
+  .product-description {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-left: 4px solid #007BFF;
+    margin: 20px 0;
+    border-radius: 5px;
+    line-height: 1.6;
+    padding-left: 30px;
+  }
+
+  .product-description.hidden {
+    display: none;
+  }
+
+  .two-columns {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+  }
+
+  .two-columns > div {
+    flex: 1;
+  }
+
+  @media (max-width: 768px) {
+    .two-columns {
+      flex-direction: column;
+    }
+  }
   
   /* === Для Firefox (опционально, экспериментально) === */
   
