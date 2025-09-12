@@ -308,6 +308,30 @@
           <li>Информационное обеспечение управления природопользованием</li>
           <li>Научно-методические разработки</li>
         </ul>
+
+        <!-- Кнопка "Подробнее" для таблицы -->
+        <button class="btn-more" onclick="toggleDescription('projects-table')">Подробнее</button>
+
+        <!-- Скрытый блок с таблицей -->
+        <div id="projects-table" class="product-description hidden">
+          <h3 style="margin-top: 40px; margin-bottom: 20px;">Оценка запасов подземных вод (по данным за 1989–2025 гг.)</h3>
+          <div class="excel-viewer">
+            <iframe 
+              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR3cjU86dK37znU0jragaxlictVWToookBG5SHpOojwhNgFZfPsCnhPPR-_btv-TpJ4jLVvNmrGUL4W/pubhtml?gid=0&single=true" 
+              width="100%" 
+              height="1200" 
+              frameborder="0"
+              allowfullscreen>
+              Ваш браузер не поддерживает iframe.
+            </iframe>
+          </div>
+
+          <p style="margin-top: 30px; font-size: 0.9rem; color: #555;">
+            <strong>Если таблица не отображается, скачайте исходный файл:</strong><br>
+            <a href="assets/таблица запасы на сайт временно на сайт.xls" target="_blank" style="color: #0066cc;">Скачать Excel-файл</a>
+          </p>
+
+        </div>
       </div>
     </section>
 
