@@ -5,24 +5,61 @@ document.addEventListener("DOMContentLoaded", function () {
   // === Функция переключения описания продукта ===
   window.toggleDescription = function (id) {
     const el = document.getElementById(id);
-    if (el.classList.contains('hidden')) {
+    if (el && el.classList.contains('hidden')) {
       el.classList.remove('hidden');
-    } else {
+    } else if (el) {
       el.classList.add('hidden');
     }
   };
 
+  // === Список якорей, относящихся к секции "Наши работы" ===
+  const projectAnchors = new Set(['#zso', '#zapas', '#geofizika', '#modelirovanie', '#vodozabor']);
+
+  // === Определяет, к какой секции относится данный хеш ===
+  function getSectionIdFromHash(hash) {
+    if (projectAnchors.has(hash)) {
+      return '#projects';
+    }
+    // Для остальных — хеш и есть ID секции
+    return hash;
+  }
+
+  // === Прокрутка к элементу с учётом смещения ===
+  function smoothScrollToElement(element, offset = 70) {
+    if (!element) return;
+    const topPos = element.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({
+      top: topPos,
+      behavior: "smooth"
+    });
+  }
+
   // === Показываем нужную секцию ===
-  function showSection(targetId) {
+  function showSection(targetHash) {
+    // Определяем, какую секцию активировать
+    const sectionId = getSectionIdFromHash(targetHash);
+    const targetSection = document.querySelector(sectionId);
+
+    // Снимаем active со всех секций и навигации
     sections.forEach(section => section.classList.remove("active"));
-    const targetSection = document.querySelector(targetId);
+    navLinks.forEach(link => link.classList.remove("active"));
+
+    // Активируем целевую секцию
     if (targetSection) {
       targetSection.classList.add("active");
     }
 
-    navLinks.forEach(link => link.classList.remove("active"));
-    const activeLink = document.querySelector(`a[href="${targetId}"]`);
-    if (activeLink) activeLink.classList.add("active");
+    // Активируем пункт меню, соответствующий секции
+    const activeNavLink = document.querySelector(`a[href="${sectionId}"]`);
+    if (activeNavLink) {
+      activeNavLink.classList.add("active");
+    }
+
+    // Прокручиваем к конкретному якорю (если он существует)
+    const anchorElement = document.querySelector(targetHash);
+    if (anchorElement && projectAnchors.has(targetHash)) {
+      smoothScrollToElement(anchorElement, 70);
+    }
   }
 
   // === Определяем активную секцию при прокрутке ===
@@ -34,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const top = rect.top;
       const bottom = rect.bottom;
 
+      // Считаем секцию активной, если она занимает верхнюю часть экрана
       if (top <= 100 && bottom >= 100) {
         currentSection = section.id;
       }
@@ -50,28 +88,26 @@ document.addEventListener("DOMContentLoaded", function () {
   navLinks.forEach(link => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const targetSection = document.querySelector(targetId);
-      
-      if (targetSection) {
-        window.scrollTo({
-          top: targetSection.offsetTop - 70,
-          behavior: "smooth"
-        });
-      }
+      const targetHash = this.getAttribute("href"); // например: "#zso" или "#services"
 
-      history.pushState(null, null, targetId);
-      showSection(targetId);
+      // Обновляем URL
+      history.pushState(null, null, targetHash);
+
+      // Показываем нужную секцию
+      showSection(targetHash);
     });
+  });
+
+  // === Обработка нажатия "Назад" в браузере ===
+  window.addEventListener("popstate", function () {
+    const hash = window.location.hash || "#about";
+    showSection(hash);
   });
 
   // === Инициализация при загрузке ===
   function onInit() {
-    if (window.location.hash && document.querySelector(window.location.hash)) {
-      showSection(window.location.hash);
-    } else {
-      showSection("#about");
-    }
+    const initialHash = window.location.hash || "#about";
+    showSection(initialHash);
   }
 
   // Запускаем
