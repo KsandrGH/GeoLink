@@ -320,38 +320,6 @@
       flex-direction: column;
     }
   }
-
-  .excel-viewer {
-    margin: 30px 0;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  }
-  /* Стили для скрываемых блоков */
-  .product-description {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: max-height 0.6s ease-out, opacity 0.3s ease;
-    opacity: 1;
-  }
-
-  .product-description.hidden {
-    max-height: 0;
-    opacity: 0;
-    padding: 0 20px;
-    margin-top: 0;
-    overflow: hidden;
-  }
-
-/* Для плавного раскрытия */
-.product-description:not(.hidden) {
-  max-height: 3000px; /* достаточно большая высота, чтобы вместить всё */
-}
   
   /* === Для Firefox (опционально, экспериментально) === */
   
@@ -404,3 +372,30 @@
       padding: 15px 0;
     }
   }
+
+/* ZSO gallery */
+.zso-gallery {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap:14px;
+  margin:12px 0 24px 0;
+}
+.zso-gallery figure {
+  background:white;
+  padding:8px;
+  border-radius:8px;
+  text-align:center;
+  border:1px solid #eef6ff;
+}
+.zso-gallery img {
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:6px;
+}
+.zso-gallery figcaption {
+  margin-top:8px;
+  font-size:0.9rem;
+  color:#1565c0;
+  font-weight:600;
+}
