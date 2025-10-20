@@ -40,7 +40,7 @@
     }
     table.zapas-table th, table.zapas-table td {
       padding: 8px 10px;
-      border: 1px solid #ddd; /* Добавьте эту строку */
+      border: 1px solid #ddd;
       text-align: left;
     }
     table.zapas-table thead th {
@@ -122,7 +122,23 @@
 <body>
   <main class="container">
     <div class="table-wrap">
-      <h2>Запасы подземных вод, разведанные ЗАО «Геолинк Консалтинг», за период с 2002 по 2025 гг.</h2>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <h2 style="margin: 0;">Запасы подземных вод, разведанные ЗАО «Геолинк Консалтинг», за период с 2002 по 2025 гг.</h2>
+        <a href="index.html" class="btn-manual" style="
+          display:inline-block;
+          padding:8px 16px;
+          border-radius:6px;
+          background:#1565c0;
+          color:white;
+          text-decoration:none;
+          font-weight:600;
+          white-space:nowrap;
+          transition: background 0.2s ease;
+        " onmouseover="this.style.background='#0d47a1'" onmouseout="this.style.background='#1565c0'">
+          ← На главную
+        </a>
+      </div>
+      
       <div class="top-actions">
         <div>Всего записей: <span id="total-count">159</span></div>
         <div style="display:flex;gap:8px;align-items:center;">
@@ -168,7 +184,6 @@
       <div class="pagination" id="pagination"></div>
     </div>
   </main>
-
 <script>
 // Full data from Excel (159 records + corrected fields)
 const data = [
