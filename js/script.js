@@ -114,4 +114,30 @@ document.addEventListener("DOMContentLoaded", function () {
   onInit();
   window.addEventListener("scroll", activateSectionOnScroll);
   window.addEventListener("load", activateSectionOnScroll);
+
+    // === Увеличение изображения при клике ===
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImage");
+    const captionText = document.getElementById("modalCaption");
+    const closeModal = document.querySelector(".close-modal");
+  
+    document.querySelectorAll(".zso-gallery img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+        captionText.innerHTML = img.alt;
+      });
+    });
+  
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  
+    // Закрытие по клику вне изображения
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  
 });
