@@ -476,17 +476,16 @@ table.zapas-table {
 table.zapas-table th,
 table.zapas-table td {
   padding: 8px 10px;
-  border: 1px solid #ddd; /* Это уже есть — оставляем */
+  border: 1px solid #ddd;
   text-align: left;
 }
 
-/* Общий стиль для всех заголовков — добавим border здесь */
+/* Общий стиль для всех заголовков */
 table.zapas-table thead th {
   background: #bbdefb;
   color: #0d47a1;
   position: sticky;
   z-index: 2;
-  border: 1px solid #ddd; /* 🔥 ДОБАВЬТЕ ЭТУ СТРОКУ */
 }
 
 /* Первая строка заголовка — выше */
@@ -496,11 +495,11 @@ table.zapas-table thead tr:first-child th {
 
 /* Вторая строка заголовка — сразу под первой */
 table.zapas-table thead tr:nth-child(2) th {
-  top: 42px;
+  top: 64px; /* Подстройте под высоту строки */
 }
 
 /* Дополнительно: задать фиксированную высоту строки для точности */
 table.zapas-table th {
-  height: 42px;
+  height: 64px;
   vertical-align: middle;
 }
