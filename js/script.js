@@ -89,14 +89,23 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", function (e) {
       e.preventDefault();
       const targetHash = this.getAttribute("href"); // например: "#zso" или "#services"
-
+  
       // Обновляем URL
       history.pushState(null, null, targetHash);
-
+  
+      // Если нажата ссылка на ModTech (#products) — прокручиваем вверх
+      if (targetHash === "#products") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }
+  
       // Показываем нужную секцию
       showSection(targetHash);
     });
   });
+  
 
   // === Обработка нажатия "Назад" в браузере ===
   window.addEventListener("popstate", function () {
