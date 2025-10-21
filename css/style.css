@@ -464,3 +464,43 @@
 .close-modal:hover {
   color: #bbb;
 }
+
+/* === Стили для двухстрочного заголовка таблицы запасов === */
+
+table.zapas-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+table.zapas-table th,
+table.zapas-table td {
+  padding: 8px 10px;
+  border: 1px solid #ddd; /* Это уже есть — оставляем */
+  text-align: left;
+}
+
+/* Общий стиль для всех заголовков — добавим border здесь */
+table.zapas-table thead th {
+  background: #bbdefb;
+  color: #0d47a1;
+  position: sticky;
+  z-index: 2;
+  border: 1px solid #ddd; /* 🔥 ДОБАВЬТЕ ЭТУ СТРОКУ */
+}
+
+/* Первая строка заголовка — выше */
+table.zapas-table thead tr:first-child th {
+  top: 0;
+}
+
+/* Вторая строка заголовка — сразу под первой */
+table.zapas-table thead tr:nth-child(2) th {
+  top: 42px;
+}
+
+/* Дополнительно: задать фиксированную высоту строки для точности */
+table.zapas-table th {
+  height: 42px;
+  vertical-align: middle;
+}
